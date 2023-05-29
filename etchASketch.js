@@ -65,4 +65,11 @@ document.getElementById('resetButton').addEventListener('click', () => {
 	sketchGrid.removeChild(sketchGrid.firstElementChild);
 	createGrid(sideSize);
 });
+
+document.getElementById('altColorResetButton').addEventListener('click', () => {
+	const sideSize = parseInt(prompt("How many squares should each side be?", 16));
+	sketchGrid.removeChild(sketchGrid.firstElementChild);
+	createGrid(sideSize, advancedRecolor);
+});
+
 createGrid();
