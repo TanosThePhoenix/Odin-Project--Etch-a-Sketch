@@ -29,7 +29,14 @@ function createGrid(gridSize = 16) {
 		}
 		grid.appendChild(gridRow);
 	}
-	document.getElementById("sketchGrid").appendChild(grid);
+	sketchGrid.appendChild(grid);
 }
 
+const sketchGrid = document.getElementById("sketchGrid");
+
+document.getElementById('resetButton').addEventListener('click', () => {
+	const sideSize = parseInt(prompt("How many squares should each side be?", 16));
+	sketchGrid.removeChild(sketchGrid.firstElementChild);
+	createGrid(sideSize);
+});
 createGrid();
