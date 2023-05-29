@@ -19,7 +19,9 @@ function createGrid(gridSize = 16) {
 		for(let i = 0; i < gridSize; ++i){
 			const gridItem = document.createElement(div)
 			gridItem.style.flex = "1 1 10px";
-			//Insert event listener for element hover here
+			gridItem.style.backgroundColor = 'white';
+			gridItem.style.border = '1px solid whitesmoke';
+			gridItem.addEventListener('hover', e => e.currentTarget.style.color = 'black');
 			gridRow.appendChild(gridItem);
 		}
 		grid.appendChild(gridRow);
