@@ -1,4 +1,4 @@
-function createGrid(gridSize = 16) {
+function createGrid(gridSize = 16, colorFunc = basicRecolor) {
 	//Limit size of grid
 	if(isNaN(gridSize)) gridSize = 16;
 	else if(gridSize < 2) gridSize = 2;
@@ -22,14 +22,40 @@ function createGrid(gridSize = 16) {
 			gridItem.style.backgroundColor = 'white';
 			gridItem.style.border = '1px solid whitesmoke';
 			gridItem.addEventListener('mouseover', e => {
-				e.currentTarget.style.backgroundColor = 'black';
-				e.currentTarget.style.borderColor = "dimgray";
+				colorFunc(e);
 			});
 			gridRow.appendChild(gridItem);
 		}
 		grid.appendChild(gridRow);
 	}
 	sketchGrid.appendChild(grid);
+}
+
+function basicRecolor(e){
+	e.currentTarget.style.backgroundColor = 'black';
+	e.currentTarget.style.borderColor = "dimgray";
+}
+
+function advancedRecolor(e){
+	const target = e.currentTarget;
+	if("data-lightness" in target){
+		const hue = target['data-hue'];
+		const saturation = target['data-saturation'];
+		let lightness = target['data-lightness'];
+		lightness = (lightness > 0) ? lightness-10 : 0;
+		if(lightness < 0) lightness = 0; //this shouldn't run but error check still
+		target.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+		target['data-lightness'] = lightness;
+	}
+	else{
+		const hue = Math.trunc(Math.random()*256);
+		const saturation = Math.trunc(Math.random()*101);
+		const lightness = 90;
+		target.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+		target['data-hue'] = hue;
+		target['data-saturation'] = saturation;
+		target['data-lightness'] = lightness;
+	}
 }
 
 const sketchGrid = document.getElementById("sketchGrid");
