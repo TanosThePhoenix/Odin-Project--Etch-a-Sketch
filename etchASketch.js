@@ -21,7 +21,10 @@ function createGrid(gridSize = 16) {
 			gridItem.style.flex = "1 1 10px";
 			gridItem.style.backgroundColor = 'white';
 			gridItem.style.border = '1px solid whitesmoke';
-			gridItem.addEventListener('hover', e => e.currentTarget.style.color = 'black');
+			gridItem.addEventListener('mouseover', e => {
+				e.currentTarget.style.backgroundColor = 'black';
+				e.currentTarget.style.borderColor = "dimgray";
+			});
 			gridRow.appendChild(gridItem);
 		}
 		grid.appendChild(gridRow);
