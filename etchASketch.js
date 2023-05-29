@@ -28,3 +28,5 @@ function createGrid(gridSize = 16) {
 	}
 	document.getElementById("sketchGrid").appendChild(grid);
 }
+
+createGrid();
